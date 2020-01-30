@@ -1,58 +1,69 @@
 //'use strict';
 
-alert('... пешеходы по лужам, а вода по асфальту рекой.');
-console.log('Пусть бегут неуклюже...');
+let isNumber = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
 
-let money = 30000,
+let money,
     income = 'Фриланс',
     addExpenses = ' ',
     deposit = true,
     mission = 300000,
     period = 6;
 
-money = prompt('Ваш месячный доход?', 30000);
-
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Бензин, связь, квартплата');
-console.log(addExpenses.split(', '));     //+
-console.log('addExpenses: ', addExpenses.length);    //+
+     
+console.log('addExpenses: ', addExpenses.length);
 deposit = confirm('Есть ли у вас депозит в банке?');
 
         // Выводит в консоль тип переменных
 
 const showTypeOf = function(data) {
     console.log(data, typeof(data));
-}
+};
+let start = function() {
+    money = prompt('Ваш месячный доход?');
+    while (!isNumber(money)) {
+        money = prompt('Ваш месячный доход?');
+    }
+};
+start();
 
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-let expenses1 = prompt('Введите обязательную статью расходов', 'Бензин'),
-    amount1 = +prompt('Во сколько обойдется?', 2500),
-    expenses2 = prompt('Введите обязательную статью расходов', 'Связь'),
-    amount2 = +prompt('Во сколько обойдется?', 1300);
+console.log(addExpenses.toLowerCase().split(','));
 
         // Возвращает сумму всех обязательных расходов за месяц
 
-const getExpensesMonth = function(a, b) {
-    let sum = a + b;
+let expenses = [];
+
+const getExpensesMonth = function() {
+    let sum = 0;
+    for (let i = 0; i < 2; i++){
+
+        expenses[i] = prompt('Введите обязательную статью расходов', 'Бензин');
+        sum += +prompt('Во сколько это обойдется?', 2500);
+
+    }
+    console.log(expenses);
     return sum;
 };
-console.log(getExpensesMonth(amount1, amount2));
+let expensesAmount = getExpensesMonth();
 
         // Возврат накоплений за месяц (доход - расход)
 
-const getAccumulatedMonth = function(c, d) {
-    const sun = c - d;
-    return sun;
-}
-let accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount1, amount2));
+const getAccumulatedMonth = function() {
+    return money - expensesAmount;
+};
+let accumulatedMonth = getAccumulatedMonth();
 
         //  Срок достижение цели
 
 const getTargetMonth = function(e, f){
     return e / f;
-}
+};
 getTargetMonth(mission, accumulatedMonth);
 console.log('Цель будет достигнута за: ' + Math.ceil(mission / accumulatedMonth) + ' месяцев.');
 
@@ -75,7 +86,7 @@ let getStatusIncome = function(){
         }
             
     } 
-}
+};
 console.log(getStatusIncome());
 
   
