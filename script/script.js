@@ -48,17 +48,19 @@ const getExpensesMonth = function() {
     for (let i = 0; i < 2; i++){
 
         expenses[i] = prompt('Введите обязательную статью расходов', 'Бензин');
-        sum += parseFloat(prompt('Во сколько это обойдется?'));
-        if (!isNumber(sum)){
-            sum += parseFloat(prompt('Во сколько это обойдется?'));
+        sum += +prompt('Во сколько это обойдется?');
+        if (!isNumber(sum.trim)){
+            sum += +prompt('Во сколько это обойдется?');
         }
     }
     console.log(expenses);
+    console.log('sum: ', sum);
     return sum;
+    
     
 };
 let expensesAmount = getExpensesMonth();
-console.log('sum: ', sum);
+console.log('expensesAmount: ', expensesAmount);
 
         // Накопления за месяц (доход - расход)
 
