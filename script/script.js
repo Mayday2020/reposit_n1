@@ -22,10 +22,17 @@ const showTypeOf = function(data) {
     console.log(data, typeof(data));
 };
 let start = function() {
-    money = prompt('Ваш месячный доход?');
-    while (!isNumber(money)) {
+    do {
         money = prompt('Ваш месячный доход?');
     }
+    while (!isNumber(money));
+
+
+
+    /*money = prompt('Ваш месячный доход?');
+    while (!isNumber(money)) {
+        money = prompt('Ваш месячный доход?');
+    }*/
 };
 start();
 
