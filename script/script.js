@@ -32,7 +32,7 @@ let appData = {
             'Бензин, связь, квартплата');
             appData.addExpenses = addExpenses.toLowerCase().split(',');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
-            
+
     },
     budget: money,      // Доход в месяц
     budgetDay: 0,       // Доход - расход в день
@@ -42,9 +42,12 @@ let appData = {
         let sum = 0;
         for (let i = 0; i < 2; i++){
             expenses[i] = prompt('Введите обязательную статью расходов', 'Бензин');
-            sum += +prompt('Во сколько это обойдется?');
-            if (!isNumber(sum)){
-                sum += +prompt('Во сколько это обойдется?');
+            let howMuch = +prompt('Во сколько это обойдется?');
+            if (isNumber(howMuch)){
+                sum += howMuch;
+            } else {
+                howMuch = +prompt('Во сколько это обойдется?');
+                i--;
             }
         }
         console.log(expenses);
