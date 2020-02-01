@@ -6,22 +6,8 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-        // Основные переменные
-
-let money,
-    income = 'Фриланс',
-    addExpenses = ' ',
-    deposit = true,
-    mission = 300000,
-    period = 6;
-
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Бензин, связь, квартплата');
-     
-console.log('addExpenses: ', addExpenses.length);
-deposit = confirm('Есть ли у вас депозит в банке?');
-
         //  Доход в месяц 
-
+let money;
 let start = function() {
     do {
         money = parseFloat(prompt('Ваш месячный доход?'));
@@ -31,17 +17,23 @@ let start = function() {
 };
 start();
 
-        // Выводит в консоль тип переменных
+        // Основные переменные
 
-const showTypeOf = function(data) {
-    console.log(data, typeof(data));
+let appData = {
+    income: {},         // Подработка
+    addIncome: [],      // Доп. доходы
+    expenses: {},       // Доп. расходы
+    addExpenses: [],    // Возможные расходы
+    deposit: false,     // Депозит
+    mission: 300000,    // Цель
+    period: 6,          // Срок
+    asking: function(){
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
+            'Бензин, связь, квартплата');
+        appData.addExpenses = addExpenses.toLowerCase().split(',');
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
+    }
 };
-
-showTypeOf(money);
-showTypeOf(income);
-showTypeOf(deposit);
-
-console.log(addExpenses.toLowerCase().split(','));
 
         // Возвращает сумму всех обязательных расходов за месяц
 
@@ -75,7 +67,7 @@ let accumulatedMonth = getAccumulatedMonth();
         //  Срок достижение цели
 
 const getTargetMonth = function(){
-    return Math.ceil(mission / accumulatedMonth);
+    return Math.ceil(appData.mission / accumulatedMonth);
 };
 
 getTargetMonth();
