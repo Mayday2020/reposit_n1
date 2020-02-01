@@ -1,8 +1,12 @@
 //'use strict';
 
+        //  Проверка на тип данных
+
 let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
+
+        // Основные переменные
 
 let money,
     income = 'Фриланс',
@@ -49,16 +53,15 @@ const getExpensesMonth = function() {
 
         expenses[i] = prompt('Введите обязательную статью расходов', 'Бензин');
         sum += +prompt('Во сколько это обойдется?');
-        if (!isNumber(sum.trim)){
+        if (!isNumber(sum)){
             sum += +prompt('Во сколько это обойдется?');
         }
     }
     console.log(expenses);
     console.log('sum: ', sum);
-    return sum;
-    
-    
+    return sum;  
 };
+
 let expensesAmount = getExpensesMonth();
 console.log('expensesAmount: ', expensesAmount);
 
@@ -76,12 +79,12 @@ const getTargetMonth = function(){
 };
 
 getTargetMonth();
+
 if (getTargetMonth() < 0) {
     console.log('Цель не будет достигнута');
 } else {
     console.log('Цель будет достигнута за: ' + Math.ceil(getTargetMonth()) + ' месяцев.');
 }
-
 
         // Заработок в сутки с учетом расходов
 
