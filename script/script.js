@@ -20,15 +20,15 @@ start();
         // Объект
 
 let appData = {
-    income: {},         // Подработка
-    addIncome: [],      // Доп. доходы
-    expenses: {},       // Доп. расходы
-    addExpenses: [],    // Возможные расходы
-    deposit: false,     // Депозит
-    percentDeposit: 0,  // Процент депозита
-    moneyDeposit: 0,    // Сумма депозита
-    mission: 300000,    // Цель
-    period: 6,          // Срок
+    income: {},             // Подработка
+    addIncome: [],          // Доп. доходы
+    expenses: {},           // Доп. расходы
+    addExpenses: [],        // Возможные расходы
+    deposit: false,         // Депозит
+    percentDeposit: 0,      // Процент депозита
+    moneyDeposit: 0,        // Сумма депозита
+    mission: 300000,        // Цель
+    period: 6,              // Срок
     asking: function(){
         if (confirm('Есть ли у вас дополнительный источник заработка?')) {
             let itemIncome;
@@ -45,7 +45,7 @@ let appData = {
         }
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
             'Бензин, связь, квартплата');
-            appData.addExpenses = addExpenses.toLowerCase().split(',');
+            appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
             for (let i = 0; i < 2; i++){
                 let itemExpenses;
@@ -139,3 +139,16 @@ for (let key in appData) {
     itemExpenses   itemIncome    cashIncome   percentDeposit   moneyDeposit
 }
 */
+console.log(appData.addExpenses);
+let stringExpenses = function(){
+    let itemsExpenses = '';
+    for (let i = 0; i < appData.addExpenses.length; i++) {
+        
+        let itemExpenses = appData.addExpenses[i] + ',';
+        itemExpenses.charAt(0).toUpperCase();
+        itemsExpenses += itemExpenses;
+    }
+    
+    console.log(itemsExpenses);
+};
+stringExpenses();
