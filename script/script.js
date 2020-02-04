@@ -25,9 +25,24 @@ let appData = {
     expenses: {},       // Доп. расходы
     addExpenses: [],    // Возможные расходы
     deposit: false,     // Депозит
+    percentDeposit: 0,  // Процент депозита
+    moneyDeposit: 0,    // Сумма депозита
     mission: 300000,    // Цель
     period: 6,          // Срок
     asking: function(){
+        if (confirm('Есть ли у вас дополнительный источник заработка?')) {
+            let itemIncome;
+            do {
+                itemIncome = prompt('Какой у вас дополнительный заработок?', 'Фриланс');
+            }
+            while (!isNaN(itemIncome));
+            let cashIncome;
+            do {
+                cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+            }
+            while (!isNumber(cashIncome));
+            appData.income[itemIncome] = cashIncome;
+        }
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 
             'Бензин, связь, квартплата');
             appData.addExpenses = addExpenses.toLowerCase().split(',');
@@ -83,6 +98,21 @@ let appData = {
                         return ('К сожалению у вас уровень дохода ниже среднего');
                     }      
         } 
+    },
+    getInfoDeposit: function() {
+        if (appData.deposit) {
+            do {
+                appData.percentDeposit = prompt('Какой годовой процент?', '10');
+            }
+            while (!isNumber(appData.percentDeposit));
+            do {
+                appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+            }
+            while (!isNumber(appData.moneyDeposit));
+        }
+    },
+    calcSavedMoney: function() {
+        return appData.budgetMonth * appData.period;
     }
 };
         // Опрос
@@ -99,9 +129,13 @@ appData.getTargetMonth();
         // Заработок в сутки с учетом расходов
 appData.getStatusIncome();
 console.log(appData.getStatusIncome());
+
 /*
 console.log('Наша программа включает в себя данные: ' );
 for (let key in appData) {
     console.log(key + appData[key]);
+
+
+    itemExpenses   itemIncome    cashIncome   percentDeposit   moneyDeposit
 }
 */
