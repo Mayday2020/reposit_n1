@@ -130,25 +130,21 @@ appData.getTargetMonth();
 appData.getStatusIncome();
 console.log(appData.getStatusIncome());
 
-/*
+
 console.log('Наша программа включает в себя данные: ' );
 for (let key in appData) {
     console.log(key + appData[key]);
-
-
-    itemExpenses   itemIncome    cashIncome   percentDeposit   moneyDeposit
 }
-*/
-console.log(appData.addExpenses);
+
 let stringExpenses = function(){
     let itemsExpenses = '';
     for (let i = 0; i < appData.addExpenses.length; i++) {
-        
-        let itemExpenses = appData.addExpenses[i] + ',';
-        itemExpenses.charAt(0).toUpperCase();
-        itemsExpenses += itemExpenses;
+        let unitExpenses = appData.addExpenses[i] + ', ';
+        let itemUppercase = unitExpenses.charAt(0).toUpperCase();
+        unitExpenses = unitExpenses.substring(1, unitExpenses.length);
+        unitExpenses = itemUppercase + unitExpenses;
+        itemsExpenses += unitExpenses;
     }
-    
     console.log(itemsExpenses);
 };
 stringExpenses();
